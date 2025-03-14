@@ -4,25 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="lib/vue.global.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <title>Document</title>
 </head>
 <body>
   <div id="app">
-    // one
-    <ul>
-      <li v-for="(todo, index) in todos">
-        <input type="checkbox" :checked="todo.complete">{{ index+1 }}．{{ todo.content }}</li>
-    </ul>
-    // two
-    <p v-if="books.length === 0">目前沒有任何書籍</p>
-    <ul v-else>
-      <li v-for="book in books">{{ book }}</li>
-    </ul>
-    // three
-    <div>問：Vue 是一個什麼樣的框架？</div>
-    <div v-show="showAnswer">答：Vue 是一套用於建構用戶介面的漸進式框架</div>
-    <button type="button" @click="toggleAnswer">{{ label }}</button>
+    // one ： 使用data提供數據
+    <div class="block">
+      <ul>
+        <li v-for="(todo, index) in todos">
+          <input type="checkbox" :checked="todo.complete">{{ index+1 }}．{{ todo.content }}</li>
+      </ul>
+    </div>
+    <br />
+    <br />
+    // two ： 展示列表內容
+    <div class="block">
+      <p v-if="books.length === 0">目前沒有任何書籍</p>
+      <ul v-else>
+        <li v-for="book in books">{{ book }}</li>
+      </ul>
+    </div> 
+    <br />
+    <br />
+    // three ： 事件與響應性
+    <div class="block">
+      <div>問：Vue 是一個什麼樣的框架？</div>
+      <div v-show="showAnswer">答：Vue 是一套用於建構用戶介面的漸進式框架</div>
+      <button type="button" @click="toggleAnswer">{{ label }}</button>
+    </div>
+    <br />
+    <br />
+    // four ： computed 與 methods 與 Watch 的區別
+    <div class="block">
+      <ul>
+        <li v-for="blog in blogPosts">{{ blog }}</li>
+        <h1>共 {{ count }} 篇部落格</h1>
+        <button type="button" @click="createNewBlog()">添加一篇部落格</button>
+        {{ newBlog }}
+      </ul>
+    </div>
+    <br />
+    <br />
+    // five ： 輸入值
+    <div class="block">
+      <label for="username">用戶名：</label>
+      <input type="text" id="username" @input="HandleInput" />
+      <div>
+        <p>您輸入的用戶名：{{ username }}</p>
+      </div>
+    </div>
+    <br />
+    <br />
+    // six ： 雙向綁定
+    <div class="block">
+      <label for="username">用戶名：</label>
+      <!-- <input type="text" :value="username" id="username" @input="HandleInput" /> -->
+      <!-- 使用 v-model -->
+      <input type="text" id="username" v-model="username" />
+      <button type="button" @click="resetUsername">清除資料</button>
+      <div>
+        <p>您輸入的用戶名：{{ username }}</p>
+      </div>
+    </div>
   </div>
   <script src="index.js"></script>
 </body>

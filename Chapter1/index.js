@@ -19,16 +19,32 @@ const sayHello = {
       showAnswer: false,
       countDown: 5,
       timer: null,
+      blogPosts: ["Vue3 全家餐", "Vue3 完全指南", "Javascript初學路線" ],
+      // count: 3,
+      newBlog: "",
+      username: "",
     }
   },
   computed: {
     label() {
       return this.showAnswer ? "隱藏答案"+ this.countDown : "顯示答案"
+    },
+    count() {
+      return this.blogPosts.length
     }
   },
   methods: {
     toggleAnswer() {
       this.showAnswer = !this.showAnswer 
+    },
+    createNewBlog() {
+      this.newBlog = "Vue 全方位對策";
+    },
+    // HandleInput(e) {
+    //   this.username = e.target.value;
+    // },
+    resetUsername() {
+      this.username = "";
     }
   },
   watch: {
@@ -48,6 +64,17 @@ const sayHello = {
           }
         }, 1000)
       }
+    },
+    blogPosts: {
+      handler(newVal) {
+        this.count = newVal.length
+      },
+      deep: true
+    },
+    newBlog(newVal) {
+      setTimeout(() => {
+        this.blogPosts.push(newVal);        
+      }, 2000);
     }
   }
 }

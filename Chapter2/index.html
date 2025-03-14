@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    //one ： v-html 網頁文本
+    <div class="block">
+      <article v-html="content"></article>
+    </div>
+    <br />
+    <br />
+    //two ： v-once 只渲染一次
+    <div class="block">
+      <p v-once>List初始長度為 {{list.length }}</p>
+      <p>List長度為 {{ list.length }}</p>
+      <button type="button" @click="listIncrease">長度+1</button>
+    </div>
+    <br />
+    <br />
+    //three ： 給v-bind 與 v-on 設置動態參數
+    <div class="block">
+      <input type="text" :[attr]="value" @[event]="handleChange" />
+    </div>
+    <br />
+    <br />
+    //four ： 再戰v-for指令
+    <div class="block">
+      <ul>
+        <li v-for="todo in todos" :key="todo.id">{{todo.id}} {{todo.content}}</li>
+      </ul>
+      <ul>
+        <li v-for="n in 5">{{ n }}</li>
+      </ul>
+    </div>
+    <br />
+    <br />
+    //five ： template 渲染一組標籤但不額外增加嵌套
+    <div class="block">
+      <div>
+        <template v-if="showTemp">
+          <h1>標題</h1>
+          <p>這是一個段落</p>
+        </template>
+        <button type="button" @click="showTemp = !showTemp">切換顯示</button>
+      </div> 
+    </div>
+    <br />
+    <br />
+    //six ： 事件傳參與多事件處理函數
+    <div class="block">
+      <ul>
+        <li v-for="todo in todos" :key="todo.id" @click="handleClick(todo.id, $event), showContent(todo.content)">{{todo.content}}</li>
+      </ul>
+    </div>
+    <br />
+    <br />
+    //seven ： 事件相關修飾符
+    <div class="block">
+      <a href="http://google.com" @click.prevent>點擊跳轉</a>
+      <ul @click.self="handleUlClick">
+        <li @click.stop="handleLiClick">1</li>
+        <li>2</li>
+      </ul>
+    </div>
+    <br />
+    <br />
+    //eight ： 滑鼠、鍵盤事件 (exact精確按鍵修飾符)
+    <div class="block">
+      <ul>
+        <li v-for="content in comments" @mousedown.right="comments.reverse()">{{ content }}</li>
+      </ul>
+      <input type="text" v-model="comment" @keyup.ctrl.enter.exact="addComment" />
+    </div>
+    <br />
+    <br />
+    //nine ： Vue 生命周期
+    <div class="block">
+      <ul>
+        <li v-for="post in posts" :key="post.id">
+          {{ post.title }}
+        </li> 
+      </ul>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
