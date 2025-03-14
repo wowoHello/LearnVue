@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="lib/vue.global.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    // one
+    <ul>
+      <li v-for="(todo, index) in todos">
+        <input type="checkbox" :checked="todo.complete">{{ index+1 }}．{{ todo.content }}</li>
+    </ul>
+    // two
+    <p v-if="books.length === 0">目前沒有任何書籍</p>
+    <ul v-else>
+      <li v-for="book in books">{{ book }}</li>
+    </ul>
+    // three
+    <div>問：Vue 是一個什麼樣的框架？</div>
+    <div v-show="showAnswer">答：Vue 是一套用於建構用戶介面的漸進式框架</div>
+    <button type="button" @click="toggleAnswer">{{ label }}</button>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
