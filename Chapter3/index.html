@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="./lib/vue.global.js"></script>
+  <title>組件</title>
+</head>
+<body>
+  <div id="app">
+    // one ： 使用組件
+    <word-count></word-count>
+    <br />
+    <br />
+    // two ： 局部註冊組件
+    <div class="block">
+      <component-a></component-a>
+    </div>
+  </div>
+  <script src="index.js" type="module"></script>
+</body>
+</html>
