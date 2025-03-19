@@ -92,6 +92,9 @@ export default {
     handleDeletePost(id) {
       this.messages = this.messages.filter((p) => p.id !== id)
     },
+  },
+  mounted() {
+    throw new Error("發生異常");
   }
 }
 </script>
